@@ -4,6 +4,5 @@ export interface Pelicula {
     imagen:string;
     alt:string;
     genero:string;
-    estreno:number;
     director:string;
 }
