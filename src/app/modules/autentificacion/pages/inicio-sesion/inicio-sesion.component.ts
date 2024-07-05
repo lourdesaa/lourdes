@@ -37,7 +37,7 @@ export class InicioSesionComponent {
 
     const res = await this.servicioAuth.iniciarSesion(credenciales.email, credenciales.password)
       .then((res: any) => {
-        alert('¡Se ha logueado con éxito! :D');
+        alert('¡Se ha logueado con éxito! Bv');
 
         this.servicioRutas.navigate(['/inicio']);
       })
