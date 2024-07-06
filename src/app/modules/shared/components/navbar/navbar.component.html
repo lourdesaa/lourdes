@@ -1,34 +1,37 @@
 <mat-toolbar>
-    <button id="menuSecciones" mat-icon-button class="example-icon" [matMenuTriggerFor]="secciones">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <mat-menu #secciones="matMenu">
-      <button mat-menu-item routerLink="/inicio">Inicio</button>
-      <button mat-menu-item [matMenuTriggerFor]="producto">Generos</button>
-    </mat-menu>
+  <!-- Botón de menú de secciones -->
+  <button id="menuSecciones" mat-icon-button class="example-icon" [matMenuTriggerFor]="secciones">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <!-- Menú de secciones -->
+  <mat-menu #secciones="matMenu">
+    <button mat-menu-item routerLink="/inicio">Inicio</button>
+    <button mat-menu-item [matMenuTriggerFor]="producto">Generos</button>
+  </mat-menu>
 
-    <span>Peliii</span>
-    <button id="menuInicio" mat-button routerLink="/inicio">Inicio</button>
+  <!-- Título de la barra de herramientas -->
+  <span>Peliii</span>
+  <button id="menuInicio" mat-button routerLink="/inicio">Inicio</button>
 
-    <!-- Menu desplegable: SECCIÓN DE PRODUCTOS -->
-    <button id="menuProducto" mat-button [matMenuTriggerFor]="producto">Generos</button>
-    <mat-menu #producto="matMenu">
-        <button mat-menu-item routerLink="/terror">Terror</button>
-        <button mat-menu-item routerLink="/animacion">Animacion</button>
-        <button mat-menu-item routerLink="/drama">Drama</button>
-        <button mat-menu-item routerLink="/comedia">Comedia</button>
-    </mat-menu>
+  <!-- Menú desplegable: SECCIÓN DE GENEROS -->
+  <button id="menuProducto" mat-button [matMenuTriggerFor]="producto">Generos</button>
+  <!-- Menú de generos -->
+  <mat-menu #producto="matMenu">
+      <button mat-menu-item routerLink="/terror">Terror</button>
+      <button mat-menu-item routerLink="/animacion">Animacion</button>
+      <button mat-menu-item routerLink="/drama">Drama</button>
+      <button mat-menu-item routerLink="/comedia">Comedia</button>
+  </mat-menu>
 
-    <span class="example-spacer"></span>
+  <span class="example-spacer"></span>
 
-    <!-- Inicio de sesión y formulario de registro -->
-    <button mat-icon-button [matMenuTriggerFor]="usuario"><mat-icon>person</mat-icon></button>
-    <mat-menu #usuario="matMenu">
-        <button mat-menu-item routerLink="/registro">Registrarse</button>
-        <button mat-menu-item routerLink="/inicio-sesion">Iniciar sesión</button>
-    </mat-menu>
+  <!-- Menú de usuario -->
+  <button mat-icon-button [matMenuTriggerFor]="usuario"><mat-icon>person</mat-icon></button>
+  <!-- Menú de opciones de usuario -->
+  <mat-menu #usuario="matMenu">
+      <button mat-menu-item routerLink="/registro">Registrarse</button>
+      <button mat-menu-item routerLink="/inicio-sesion">Iniciar sesión</button>
+  </mat-menu>
 
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
-</mat-toolbar>
+  <!-- Botón de carrito de compras -->
+  <button mat-icon-button
