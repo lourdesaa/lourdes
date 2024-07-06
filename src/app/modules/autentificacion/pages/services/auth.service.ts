@@ -8,20 +8,16 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class AuthService {
   constructor(public auth: AngularFireAuth) { }
 
-  // Función para REGISTRO
   registrar(email: string, password: string){
     return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
-  // Función para INICIO DE SESIÓN
   iniciarSesion(email: string, password: string){
-    // Validar el email y la contraseña
     return this.auth.signInWithEmailAndPassword(email, password);
   }
 
   // Función para CERRAR SESIÓN
   cerrarSesion(){
-    // Devolver una promesa vacía
     return this.auth.signOut();
   }
 
