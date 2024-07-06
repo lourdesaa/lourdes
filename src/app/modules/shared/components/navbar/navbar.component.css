@@ -1,0 +1,56 @@
+/* Estilo para el toolbar */
+mat-toolbar {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Estilo para los botones de iconos */
+.example-icon {
+    color: #fff;
+}
+
+.favorite-icon {
+    color: #fff;
+}
+
+/* Estilo para los botones */
+mat-toolbar button {
+    color: #fff;
+    margin: 0 10px;
+}
+
+mat-toolbar button:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+/* Estilo para el span del título */
+mat-toolbar span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Estilo para el espacio entre elementos */
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+/* Estilo para el mat-menu */
+mat-menu {
+    background-color: #333;
+    color: #fff;
+}
+
+mat-menu button {
+    color: #fff;
+}
+
+mat-menu button:hover {
+    background-color: #555;
+    color: #fff;
+}
