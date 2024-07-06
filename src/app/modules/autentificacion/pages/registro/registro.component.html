@@ -1,28 +1,27 @@
 <div class="container">
     <div class="row">
         <h1>Registrate</h1>
-
+        
         <i class="material-icons" style="font-size: 200px;">person</i>
-
+        
         <!-- Nombre de usuario -->
         <mat-form-field appearance="fill">
             <mat-label>Ingrese nombre de usuario:</mat-label>
-            <!-- ngModel = conecta de forma bidireccional como un formulario -->
             <input [(ngModel)]="usuarios.nombre" matInput placeholder="Ej: Pepe" required>
         </mat-form-field>
-
+        
         <!-- Apellido de usuario-->
         <mat-form-field appearance="fill">
             <mat-label>Ingrese su apellido:</mat-label>
             <input [(ngModel)]="usuarios.apellido" matInput placeholder="Ej: Peréz" required>
         </mat-form-field>
-
+        
         <!-- Email de usuario -->
         <mat-form-field appearance="fill">
             <mat-label>Ingrese su email:</mat-label>
             <input [(ngModel)]="usuarios.email" matInput placeholder="Ej: superpepe@gmail.com" required>
         </mat-form-field>
-
+        
         <!-- Rol de usuario -->
         <mat-form-field>
             <mat-label>Seleccione un rol:</mat-label>
@@ -31,7 +30,7 @@
               <mat-option value="vis">Visitante</mat-option>
             </mat-select>
         </mat-form-field>
-
+        
         <!-- Contraseña de usuario -->
         <mat-form-field>
             <mat-label>Ingrese su contraseña</mat-label>
@@ -41,7 +40,7 @@
             </button>
             <mat-hint text-align="start">Mínimo:6/{{input.value.length}}</mat-hint>
         </mat-form-field>
-
+        
         <!-- Botón para enviar la información -->
         <button mat-raised-button color="primary" class="boton" (click)="registrar()">Registrar</button>
     </div>
