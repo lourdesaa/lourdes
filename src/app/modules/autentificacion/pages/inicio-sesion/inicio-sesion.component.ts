@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
-import { AuthService } from '../services//auth.service';
+import { AuthService } from '../services/auth.service';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore.service';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class InicioSesionComponent {
   hide = true;
-
   constructor(
     public servicioAuth: AuthService,
     public servicioFirestore: FirestoreService,
@@ -19,6 +18,7 @@ export class InicioSesionComponent {
   ) { }
 
 
+  // Importamos la interfaz de usuario e inicializamos vacío
   usuarioIngresado: Usuario = {
     uid: '',
     nombre: '',
@@ -28,20 +28,21 @@ export class InicioSesionComponent {
     password: ''
   }
 
+  // Función para el inicio de sesión
   async iniciarSesion() {
-    
+
     const credenciales = {
       email: this.usuarioIngresado.email,
       password: this.usuarioIngresado.password
     }
 
     const res = await this.servicioAuth.iniciarSesion(credenciales.email, credenciales.password)
-      .then((res: any) => {
-        alert('¡Se ha logueado con éxito! Bv');
+      .then(res => {
+        alert('¡Se ha logueado con éxito! :D');
 
         this.servicioRutas.navigate(['/inicio']);
       })
-      .catch((err: string) => {
+      .catch(err => {
         alert('Hubo un problema al iniciar sesión :( ' + err);
 
         this.limpiarInputs();

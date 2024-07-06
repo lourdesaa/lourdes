@@ -36,8 +36,8 @@ export class RegistroComponent {
     public servicioRutas: Router // método de navegación
   ){}
 
+  // FUNCIÓN ASINCRONICA PARA EL REGISTRO
   async registrar(){
-
     const credenciales = {
       email: this.usuarios.email,
       password: this.usuarios.password
@@ -46,7 +46,7 @@ export class RegistroComponent {
     // constante "res" = resguarda una respuesta
     const res = await this.servicioAuth.registrar(credenciales.email, credenciales.password)
     // El método THEN nos devuelve la respuesta esperada por la promesa
-    .then((res: any) => {
+    .then(res => {
       alert('Ha agregado un usuario con éxito :)');
 
       // Accedemos al servicio de rutas -> método navigate
@@ -54,7 +54,7 @@ export class RegistroComponent {
       this.servicioRutas.navigate(['/inicio']);
     })
     // El método CATCH toma una falla y la vuelve un ERROR
-    .catch((error: any) => {
+    .catch(error => {
       alert('Hubo un problema al registrar un nuevo usuario :(');
     })
 
@@ -71,10 +71,10 @@ export class RegistroComponent {
   // función para agregar NUEVO USUARIO
   async guardarUsuario(){
     this.servicioFirestore.agregarUsuario(this.usuarios, this.usuarios.uid)
-    .then((res: any) => {
+    .then(res => {
       console.log(this.usuarios);
     })
-    .catch((err: any) => {
+    .catch(err => {
       console.log('Error =>', err);
     })
   }
@@ -91,4 +91,3 @@ export class RegistroComponent {
     }
   }
 }
-
