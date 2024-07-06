@@ -8,12 +8,12 @@ import { FirestoreService } from 'src/app/modules/shared/services/firestore.serv
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  selector: 'app-registro', // Define el selector del componente, que se usará para insertar este componente en una plantilla HTML
+  templateUrl: './registro.component.html', // Ruta del archivo de plantilla HTML del componente
+  styleUrls: ['./registro.component.css'] // Ruta del archivo de estilos CSS del componente
 })
 export class RegistroComponent {
-  // Este "hide" es para el input de contraseña
+  // Este "hide" es para el input de contraseña, para ocultarla mientras se escribe
   hide = true;
 
   // IMPORTACIÓN DEL MODELO / INTERFAZ
@@ -68,7 +68,7 @@ export class RegistroComponent {
     this.limpiarInputs();
   }
 
-  // función para agregar NUEVO USUARIO
+  // FUNCIÓN PARA AGREGAR NUEVO USUARIO
   async guardarUsuario(){
     this.servicioFirestore.agregarUsuario(this.usuarios, this.usuarios.uid)
     .then(res => {
