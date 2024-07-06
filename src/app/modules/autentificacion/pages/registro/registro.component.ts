@@ -8,12 +8,12 @@ import { FirestoreService } from 'src/app/modules/shared/services/firestore.serv
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-registro', // Define el selector del componente, que se usará para insertar este componente en una plantilla HTML
-  templateUrl: './registro.component.html', // Ruta del archivo de plantilla HTML del componente
-  styleUrls: ['./registro.component.css'] // Ruta del archivo de estilos CSS del componente
+  selector: 'app-registro',
+  templateUrl: './registro.component.html',
+  styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent {
-  // Este "hide" es para el input de contraseña, para ocultarla mientras se escribe
+  // Este "hide" es para el input de contraseña
   hide = true;
 
   // IMPORTACIÓN DEL MODELO / INTERFAZ
@@ -38,6 +38,25 @@ export class RegistroComponent {
 
   // FUNCIÓN ASINCRONICA PARA EL REGISTRO
   async registrar(){
+    // CREDENCIALES = información que ingrese el usuario
+    //################################ LOCAL
+    /*
+    const credenciales = {
+      uid: this.usuarios.uid,
+      nombre: this.usuarios.nombre,
+      apellido: this.usuarios.apellido,
+      email: this.usuarios.email,
+      rol: this.usuarios.rol,
+      password: this.usuarios.password
+    }*/
+
+    // enviamos los nuevos registros por medio del método push a la colección
+    // this.coleccionUsuarios.push(credenciales);
+
+    // Notificamos al usuario el correcto registro
+    // alert("Te registraste con éxito :)");
+    // ############################### FIN LOCAL
+
     const credenciales = {
       email: this.usuarios.email,
       password: this.usuarios.password
@@ -68,7 +87,7 @@ export class RegistroComponent {
     this.limpiarInputs();
   }
 
-  // FUNCIÓN PARA AGREGAR NUEVO USUARIO
+  // función para agregar NUEVO USUARIO
   async guardarUsuario(){
     this.servicioFirestore.agregarUsuario(this.usuarios, this.usuarios.uid)
     .then(res => {

@@ -1,34 +1,34 @@
-// Importaciones necesarias para el servicio de autenticación
 import { Injectable } from '@angular/core';
+// Servicio de AUTENTIFICACIÓN de FIREBASE
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
-  providedIn: 'root' // Hace que el servicio esté disponible en toda la aplicación
+  providedIn: 'root'
 })
 export class AuthService {
-  // El constructor inyecta AngularFireAuth como una dependencia
+  // Referenciar Auth de Firebase para inicializarlo
   constructor(public auth: AngularFireAuth) { }
 
-  // Método para registrar un nuevo usuario utilizando email y contraseña
+  // Función para REGISTRO
   registrar(email: string, password: string){
+    // Retorna nueva información de EMAIL y CONTRASEÑA
     return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
-  // Método para iniciar sesión con un usuario existente utilizando email y contraseña
+  // Función para INICIO DE SESIÓN
   iniciarSesion(email: string, password: string){
     return this.auth.signInWithEmailAndPassword(email, password);
   }
 
-  // Método para cerrar la sesión del usuario actual
+  // Función para CERRAR SESIÓN
   cerrarSesion(){
     return this.auth.signOut();
   }
 
-  // Método para obtener el UID del usuario actual
+  // Función para tomar UID
   async obtenerUid(){
     const user = await this.auth.currentUser;
 
-    // Si user es null, devuelve null, sino, devuelve el UID del usuario
     if(user == null){
       return null;
     } else {

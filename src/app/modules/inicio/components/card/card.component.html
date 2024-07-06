@@ -1,27 +1,25 @@
+<!-- Contenedor principal con clase 'container' para el diseño -->
 <div class="container">
-    <!-- Contenedor principal con clase 'container' para el diseño -->
     <div class="row">
         <h1>Inicio</h1>
 
         <div class="col">
-            <!-- Columna para los contenidos -->
             <div *ngFor="let i of info" class="contenido">
-                <!-- directiva 'ngFor', por cada elemento 'i' en 'info', se crea una nueva 'div' con clase 'contenido -->
                 <mat-card class="example-card">
                     <mat-card-header>
-                        <mat-card-title>{{i.nombre}}</mat-card-title>
+                      <mat-card-title>{{i.nombre}}</mat-card-title>
                     </mat-card-header>
                     <img mat-card-image src="{{i.imagen}}" alt="{{i.alt}}">
                     <mat-card-content>
-                        <p>
-                            {{i.genero}}
-                        </p>
+                      <p>
+                        {{i.genero}}
+                      </p>
                     </mat-card-content>
                     <mat-card-actions>
-                        <button mat-button>LIKE</button>
-                        <button mat-button>SHARE</button>
+                      <button mat-button>LIKE</button>
+                      <button mat-button>SHARE</button>
                     </mat-card-actions>
-                </mat-card>                
+                  </mat-card>                
             </div>
         </div>
     </div>
