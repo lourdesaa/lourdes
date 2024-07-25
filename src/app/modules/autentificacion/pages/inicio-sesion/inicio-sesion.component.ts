@@ -17,7 +17,7 @@ export class InicioSesionComponent {
     public servicioRutas: Router
   ) { }
 
-
+  
   // Importamos la interfaz de usuario e inicializamos vacío
   usuarioIngresado: Usuario = {
     uid: '',
