@@ -7,6 +7,9 @@ import { FirestoreService } from 'src/app/modules/shared/services/firestore.serv
 // Servicio de rutas que otorga Angular
 import { Router } from '@angular/router';
 
+// import * as CryptoJS from 'crypto-js'
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -66,15 +69,22 @@ export class RegistroComponent {
     const res = await this.servicioAuth.registrar(credenciales.email, credenciales.password)
     // El método THEN nos devuelve la respuesta esperada por la promesa
     .then(res => {
-      alert('Ha agregado un usuario con éxito :)');
-
+      Swal.fire({
+        title: "Buen trabajo!",
+        text: "Ha agregado un usuario con exito",
+        icon: "success"
+      });
       // Accedemos al servicio de rutas -> método navigate
       // método NAVIGATE = permite dirigirnos a diferentes vistas
       this.servicioRutas.navigate(['/inicio']);
     })
     // El método CATCH toma una falla y la vuelve un ERROR
     .catch(error => {
-      alert('Hubo un problema al registrar un nuevo usuario :(');
+      Swal.fire({
+        title: "Hubo un error en el registro del usuario",
+        text: "No se ha podido registrar usuario",
+        icon: "error"
+      });
     })
 
     const uid = await this.servicioAuth.obtenerUid();

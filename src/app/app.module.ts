@@ -6,13 +6,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // COMPONENTES GLOBALES
-import { SharedModule } from './modules/shared/shared.module';
 
 // VINCULACIONES/ IMPORTACIONES CON FIREBASE
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat'; // Es para el Cloud Firestore
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'; // Es para la Autentificación
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [

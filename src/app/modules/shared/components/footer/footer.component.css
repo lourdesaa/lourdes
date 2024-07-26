@@ -1,0 +1,26 @@
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+footer {
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+    position: fixed; 
+    text-align: center;
+    margin: auto;
+    padding: 10px 0;
+    margin-left: 250px;
+}
+
+@media (max-width: 768px) {
+    footer .col-md-4 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    footer .nav {
+        justify-content: center;
+    }
+}
