@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Producto } from 'src/app/models/producto';
 import { CrudService } from '../../services/crud.service';
 import { FormControl, FormGroup, Validator, Validators } from '@angular/forms';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -25,4 +26,35 @@ export class TableComponent {
   })
 
   constructor(public servicioCrud: CrudService) { }
+
+  ngOnInit(): void {
+    // subscribe => notifica constantemente los cambios actuales del sistema 
+    this.servicioCrud.obtenerProducto().subscribe(producto => {
+      // guarda la notificacion recibida como un nuevo "producto" a la coleccion
+      this.coleccionProductos = producto;
+    })
+  }
+
+  async agregarProducto(){
+    if(this.producto.valid){
+      let nuevoProducto: Producto = {
+        idProducto: '',
+        nombre: this.producto.value.nombre!,
+        precio: this.producto.value.precio!,
+        descripcion: this.producto.value.descripcion!,
+        categoria: this.producto.value.categoria!,
+        imagen: this.producto.value.imagen!,
+        alt: this.producto.value.alt!
+      }
+
+      await this.servicioCrud.crearProducto(nuevoProducto)
+      .then(producto => {
+        alert("Ha agregado un nuevo producto con exito")
+      })
+      
+      .catch(error=>{
+        alert("Hubo problema al agregar un nuevo producto")
+      })
+    }
+  }
 }
