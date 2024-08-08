@@ -26,14 +26,14 @@ export class CrudService {
         //
         const resultado = await this.productoCollection.doc(idProducto).set(producto)
         resolve(resultado)
-      } catch (error){
+      } catch (error) {
         reject(error)
       }
     })
   }
 
   //OBTENER productos
-  obtenerProducto(){
+  obtenerProducto() {
     // snapshotChanges -> toma una captura del estado de los datos 
     // pipe -> funciona como tuberia que retorna el nuevo arreglo de datos
     // map -> "mapea" o recorre esa nueva informacion
@@ -42,6 +42,25 @@ export class CrudService {
 
   }
   //EDITAR productos
-  //ELIMINAR productos
 
+
+  //ELIMINAR productos
+  eliminarProducto(idProducto: string) {
+    return new Promise((resolve, reject ) => {
+      try {
+        const respuesta = this.productoCollection.doc(idProducto).delete()
+        resolve(respuesta)
+      }
+      catch (error) {
+        reject(error)
+      }
+    })
+    }
+  }
+
+
+
+function resolve(respuesta: Promise<void>) {
+  throw new Error('Function not implemented.');
 }
+

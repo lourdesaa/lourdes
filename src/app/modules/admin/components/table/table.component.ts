@@ -13,6 +13,13 @@ export class TableComponent {
   //crear cleccion de productos del tipo producto -> la definimos como un array
   coleccionProductos: Producto[] = []
 
+  //para manejar el estado de edicion y eliminacion de productos
+  modalVisibleProducto: boolean = false;
+
+  //va a tomar el producto que nosotros elijamos
+  productoSeleccionado!: Producto; //recibe valores vacios
+
+
   //definimos formulario para los productos
   //atributos alfanumericos (string) se inicializan con comillas simples
   //atributos numericos (number) se inicializan con cero "0"
@@ -35,8 +42,8 @@ export class TableComponent {
     })
   }
 
-  async agregarProducto(){
-    if(this.producto.valid){
+  async agregarProducto() {
+    if (this.producto.valid) {
       let nuevoProducto: Producto = {
         idProducto: '',
         nombre: this.producto.value.nombre!,
@@ -48,13 +55,32 @@ export class TableComponent {
       }
 
       await this.servicioCrud.crearProducto(nuevoProducto)
-      .then(producto => {
-        alert("Ha agregado un nuevo producto con exito")
-      })
-      
-      .catch(error=>{
-        alert("Hubo problema al agregar un nuevo producto")
-      })
+        .then(producto => {
+          alert("Ha agregado un nuevo producto con exito")
+        })
+
+        .catch(error => {
+          alert("Hubo problema al agregar un nuevo producto")
+        })
     }
   }
+
+
+  mostrarBorrar(productoSeleccionado: Producto) {
+    this.modalVisibleProducto = true
+    //toma los valores del producto elegido
+    this.productoSeleccionado = productoSeleccionado
+  }
+
+  borrarProducto() {
+    this.servicioCrud.eliminarProducto(this.productoSeleccionado.idProducto)
+      .then(respuesta => {
+        alert("El producto se ha eliminado correctamente")
+      })
+      .catch(error => {
+        alert("No se ha podido eliminar el producto \n" + error)
+      })
+
+  }
+
 }
