@@ -25,10 +25,10 @@
       <td>
         <button id="btn-edit" title="Editar" type="button" class="btn btn-outline-writing">
           <mat-icon>edit</mat-icon>
-        </button>  
+        </button>
       </td>
       <td>
-        <button id="btn-delete" tittle="Eliminar" type="button" class="btn btn-outline-danger">
+        <button id="btn-delete" tittle="Eliminar" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminarProducto" (click)="mostrarBorrar(producto)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -54,13 +54,12 @@
       <div [formGroup]="producto" class="modal-body">
         <div class="mb-3">
           <label class="form-label">Ingrese el nombre del producto</label>
-          <input class="form-control" type="text" formControlName="nombre" placeholder="Ej: medias de chanchito">
+          <input class="form-control" type="text" formControlName="nombre" placeholder="Ej: El conjuro">
         </div>
 
         <div class="mb-3">
           <label class="form-label">Ingrese descripcion del producto</label>
-          <input class="form-control" type="text" formControlName="descripcion"
-            placeholder=" Ej: medias hechas de lana">
+          <input class="form-control" type="text" formControlName="descripcion">
         </div>
 
         <div class="mb-3">
@@ -72,9 +71,10 @@
           <label class="form-label">Seleccione una categoria</label>
           <select class="form-control" class="form-select" formControlName="categoria">
             <option selected>Elija una opcion</option>
-            <option value="alimentacion">Alimentacion</option>
-            <option value="indumentaria">indumentaria</option>
-            <option value="juguetes">Juguetes</option>
+            <option value="terror">Terror</option>
+            <option value="animacion">Animacion</option>
+            <option value="comedia">Comedia</option>
+            <option value="drama">Drama</option>
           </select>
         </div>
 
@@ -94,6 +94,28 @@
         <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"
           (click)="agregarProducto()">Guardar</button>
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" *ngIf="modalVisibleProducto" id="eliminarProducto" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Esta seguro de eliminar el producto</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{productoSeleccionado.nombre}}
+        <img src="{{productoSeleccionado.imagen}}" alt="{{productoSeleccionado.alt}}">
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="borrarProducto()">Borrar</button>
+        <mat-icon>delete</mat-icon>
       </div>
     </div>
   </div>

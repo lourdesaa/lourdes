@@ -65,7 +65,6 @@ export class TableComponent {
     }
   }
 
-
   mostrarBorrar(productoSeleccionado: Producto) {
     this.modalVisibleProducto = true
     //toma los valores del producto elegido
@@ -80,7 +79,44 @@ export class TableComponent {
       .catch(error => {
         alert("No se ha podido eliminar el producto \n" + error)
       })
+  }
 
+
+  mostrarEditar(productoSeleccionado: Producto) {
+    this.productoSeleccionado = productoSeleccionado
+    //enviar o "setear" los nuevos valores y resignarlos a las variables
+    //el ID no se vuelve a enviar ni se modifica, por ende no lo llamamos
+    this.producto.setValue({
+      nombre: productoSeleccionado.nombre,
+      precio: productoSeleccionado.precio,
+      descripcion: productoSeleccionado.descripcion,
+      categoria: productoSeleccionado.categoria,
+      imagen: productoSeleccionado.imagen,
+      alt: productoSeleccionado.alt
+    })
+  }
+
+  editarProducto() {
+    let datos: Producto = {
+      //solo el ID toma y deja igual su valor
+      idProducto: this.productoSeleccionado.idProducto,
+      nombre: this.producto.value.nombre!,
+      precio: this.producto.value.precio!,
+      descripcion: this.producto.value.descripcion!,
+      categoria: this.producto.value.categoria!,
+      imagen: this.producto.value.imagen!,
+      alt: this.producto.value.alt!
+    }
+
+    this.servicioCrud.modificarProducto(this.productoSeleccionado.idProducto, datos)
+
+      .then(producto => {
+        alert("El producto fue modificado con exito.")
+      })
+
+      .catch(error => {
+        alert("Hubo un problema al modificar el producto.")
+      })
   }
 
 }

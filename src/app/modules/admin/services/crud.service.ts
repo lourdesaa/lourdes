@@ -42,11 +42,16 @@ export class CrudService {
 
   }
   //EDITAR productos
+  modificarProducto(idProducto: string, nuevaData: Producto) {
+    //accedemos a la coleccion, buscamos por ID y actualizamos la informacion
+    return this.database.collection('producto').doc(idProducto).update(nuevaData)
 
+
+  }
 
   //ELIMINAR productos
   eliminarProducto(idProducto: string) {
-    return new Promise((resolve, reject ) => {
+    return new Promise((resolve, reject) => {
       try {
         const respuesta = this.productoCollection.doc(idProducto).delete()
         resolve(respuesta)
@@ -55,10 +60,8 @@ export class CrudService {
         reject(error)
       }
     })
-    }
   }
-
-
+}
 
 function resolve(respuesta: Promise<void>) {
   throw new Error('Function not implemented.');
