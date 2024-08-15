@@ -10,13 +10,15 @@ import { AnimacionComponent } from './pages/animacion/animacion.component';
 import { DramaComponent } from './pages/drama/drama.component';
 import { ComediaComponent } from './pages/comedia/comedia.component';
 import { ProductoComponent } from './pages/producto/producto.component';
+import { CardTerrorComponent } from './component/card-terror/card-terror.component';
 @NgModule({
   declarations: [
   TerrorComponent,
   AnimacionComponent,
   DramaComponent,
   ComediaComponent,
-  ProductoComponent
+  ProductoComponent,
+  CardTerrorComponent
   ],
   imports: [
     CommonModule,
