@@ -10,7 +10,12 @@ import { AnimacionComponent } from './pages/animacion/animacion.component';
 import { DramaComponent } from './pages/drama/drama.component';
 import { ComediaComponent } from './pages/comedia/comedia.component';
 import { ProductoComponent } from './pages/producto/producto.component';
+
+//COMPONENTES LOCALES
 import { CardTerrorComponent } from './component/card-terror/card-terror.component';
+import { CardComponentComponent } from './components/card/card.component/card.component.component';
+
+
 @NgModule({
   declarations: [
   TerrorComponent,
@@ -18,7 +23,8 @@ import { CardTerrorComponent } from './component/card-terror/card-terror.compone
   DramaComponent,
   ComediaComponent,
   ProductoComponent,
-  CardTerrorComponent
+  CardTerrorComponent,
+  CardComponentComponent
   ],
   imports: [
     CommonModule,

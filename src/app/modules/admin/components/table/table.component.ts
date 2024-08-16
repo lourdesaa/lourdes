@@ -57,10 +57,13 @@ export class TableComponent {
       await this.servicioCrud.crearProducto(nuevoProducto)
         .then(producto => {
           alert("Ha agregado un nuevo producto con exito")
-        })
+          // Limpiamos formulario para agregar nuevos productos
+        this.producto.reset();
+      })
 
         .catch(error => {
           alert("Hubo problema al agregar un nuevo producto")
+          this.producto.reset()
         })
     }
   }
@@ -71,34 +74,36 @@ export class TableComponent {
     this.productoSeleccionado = productoSeleccionado
   }
 
-  borrarProducto() {
-    this.servicioCrud.eliminarProducto(this.productoSeleccionado.idProducto)
+    // Función para eliminar definitivamente al producto
+    borrarProducto(){
+      this.servicioCrud.eliminarProducto(this.productoSeleccionado.idProducto)
       .then(respuesta => {
-        alert("El producto se ha eliminado correctamente")
+        alert("El producto se ha eliminado correctamente.")
       })
       .catch(error => {
-        alert("No se ha podido eliminar el producto \n" + error)
+        alert("No se ha podido eliminar el producto \n"+error);
       })
-  }
+    }
 
 
-  mostrarEditar(productoSeleccionado: Producto) {
-    this.productoSeleccionado = productoSeleccionado
-    //enviar o "setear" los nuevos valores y resignarlos a las variables
-    //el ID no se vuelve a enviar ni se modifica, por ende no lo llamamos
-    this.producto.setValue({
-      nombre: productoSeleccionado.nombre,
-      precio: productoSeleccionado.precio,
-      descripcion: productoSeleccionado.descripcion,
-      categoria: productoSeleccionado.categoria,
-      imagen: productoSeleccionado.imagen,
-      alt: productoSeleccionado.alt
-    })
-  }
+    // Función para seleccionar el producto a editar
+    mostrarEditar(productoSeleccionado: Producto){
+      this.productoSeleccionado = productoSeleccionado;
+      // Enviar o "setear" los nuevos valores y reasignarlos a las variables
+      // El ID no se vuelve a enviar ni se modifica, por ende no lo llamamos
+      this.producto.setValue({
+        nombre: productoSeleccionado.nombre,
+        precio: productoSeleccionado.precio,
+        descripcion: productoSeleccionado.descripcion,
+        categoria: productoSeleccionado.categoria,
+        imagen: productoSeleccionado.imagen,
+        alt: productoSeleccionado.alt
+      })
+    }
 
-  editarProducto() {
+  editarProducto(){
     let datos: Producto = {
-      //solo el ID toma y deja igual su valor
+      // Solo el ID toma y deja igual su valor
       idProducto: this.productoSeleccionado.idProducto,
       nombre: this.producto.value.nombre!,
       precio: this.producto.value.precio!,
@@ -107,16 +112,12 @@ export class TableComponent {
       imagen: this.producto.value.imagen!,
       alt: this.producto.value.alt!
     }
-
     this.servicioCrud.modificarProducto(this.productoSeleccionado.idProducto, datos)
-
-      .then(producto => {
-        alert("El producto fue modificado con exito.")
-      })
-
-      .catch(error => {
-        alert("Hubo un problema al modificar el producto.")
-      })
+    .then(producto => {
+      alert("El producto fue modificado con éxito.");
+    })
+    .catch(error => {
+      alert("Hubo un problema al modificar el producto.");
+    })
   }
-
 }

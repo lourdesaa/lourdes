@@ -1,5 +1,6 @@
 <table class="table">
   <thead>
+    <tr>
     <th scope="col">#</th>
     <th scope="col">Imagen</th>
     <th scope="col">Nombre</th>
@@ -7,13 +8,14 @@
     <th scope="col">descripcion</th>
     <th scope="col">Categoria</th>
     <th scope="col">Acciones</th>
+    </tr>
   </thead>
 
   <tbody>
     <tr *ngFor="let producto of coleccionProductos">
       <th scope="row">i</th>
       <td>
-        <img src="{{producto.imagen}}" alt="{{producto.alt}}">
+        <img src="{{producto.imagen}}" alt="{{producto.alt}}" width="100px">
       </td>
 
       <td>{{producto.nombre}}</td>
@@ -21,10 +23,11 @@
       <td>{{producto.descripcion}}</td>
       <td>{{producto.categoria}}</td>
 
+
       <!-- ACCIONES -->
       <!-- EDITAR -->
       <td>
-        <button id="btn-edit" title="Editar" type="button" class="btn btn-outline-writing"
+        <button id="btn-edit" title="Editar" type="button" class="btn btn-outline-writing"   data-bs-toggle="modal" data-bs-target="#editarProducto" 
           (click)="mostrarEditar(producto)">
           <mat-icon>edit</mat-icon>
         </button>
@@ -105,7 +108,8 @@
 
 
 <!-- MODAL PARA EDITAR PRODUCTOS -->
-<div class="modal fade" id="editarProducto" *ngFor="let productosEdit of coleccionProductos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editarProducto" *ngFor="let productosEdit of coleccionProductos" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -121,7 +125,8 @@
 
         <div class="mb-3">
           <label class="form-label">Ingrese descripcion del producto</label>
-          <input class="form-control" type="text" formControlName="descripcion" placeholder="{{productosEdit.descripcion}}">
+          <input class="form-control" type="text" formControlName="descripcion"
+            placeholder="{{productosEdit.descripcion}}">
         </div>
 
         <div class="mb-3">
@@ -154,7 +159,7 @@
       <!--ACCIONES DEL MODAL-->
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"
-          (click)="agregarProducto()">Guardar</button>
+          (click)="editarProducto()">Guardar</button>
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrrar</button>
       </div>
     </div>
