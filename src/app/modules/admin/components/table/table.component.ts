@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Producto } from 'src/app/models/producto';
+import{ Producto} from 'src/app/models/producto'
 import { CrudService } from '../../services/crud.service';
 import { FormControl, FormGroup, Validator, Validators } from '@angular/forms';
 import { Subscriber } from 'rxjs';
@@ -18,7 +18,6 @@ export class TableComponent {
 
   //va a tomar el producto que nosotros elijamos
   productoSeleccionado!: Producto; //recibe valores vacios
-
 
   //definimos formulario para los productos
   //atributos alfanumericos (string) se inicializan con comillas simples

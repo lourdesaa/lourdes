@@ -8,35 +8,36 @@ import { CrudService } from 'src/app/modules/admin/services/crud.service';
   styleUrls: ['./card-terror.component.css']
 })
 export class CardTerrorComponent {
-  // Colección de todos los productos
-  coleccionProductos: Producto[] = []
-  // Colección de sólo productos de categoría "Terror"
-  coleccionTerror: Producto[] = []
+  coleccionProductos: Producto[] = [];
+
+  coleccionTerror: Producto[] = [];
 
   productoSeleccionado!: Producto;
 
-  modalVisible: boolean = false
+  modalVisible: boolean = false;
 
   constructor(public servicioCrud: CrudService) { }
 
-  ngOnInIt(): void {
+  ngOnInit(): void {
     this.servicioCrud.obtenerProducto().subscribe(producto => {
       this.coleccionProductos = producto;
-      this.mostrarProductoTerror()
+
+      this.mostrarProductoTerror();
     })
   }
 
   mostrarProductoTerror() {
     this.coleccionProductos.forEach(producto => {
-      if (producto.categoria === "terror") {
-        this.coleccionTerror.push(producto)
-      }
 
-    });
+      if (producto.categoria === "terror") {
+        this.coleccionTerror.push(producto);
+      }
+    })
   }
 
   mostrarVer(info: Producto) {
-    this.modalVisible = true
-    this.productoSeleccionado = info
+    this.modalVisible = true;
+
+    this.productoSeleccionado = info;
   }
 }
