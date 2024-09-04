@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Producto } from 'src/app/models/producto';
 import { CrudService } from 'src/app/modules/admin/services/crud.service';
 
@@ -17,9 +17,18 @@ export class CardAnimacionComponent {
 
   modalVisible: boolean = false;
 
-  constructor(public servicioCrud: CrudService){}
+  //Booleana para manejar la visibilidad de "ultima compra"
+  compraVisible: boolean = false;
 
-  ngOnInit(): void{
+  //Directivas para comuncarse con el componente padre
+  @Input() productoReciente: string = ''
+
+  //Output sera definido como un nuevo evento
+  @Output() productoAgregado = new EventEmitter<Producto>
+
+  constructor(public servicioCrud: CrudService) { }
+
+  ngOnInit(): void {
     this.servicioCrud.obtenerProducto().subscribe(producto => {
       this.coleccionProductos = producto;
 
@@ -28,18 +37,26 @@ export class CardAnimacionComponent {
     })
   }
 
-  mostrarProductoAnimacion(){
+  mostrarProductoAnimacion() {
     this.coleccionProductos.forEach(producto => {
 
-      if(producto.categoria === "animacion"){
+      if (producto.categoria === "animacion") {
         this.coleccionAnimacion.push(producto);
       }
     })
   }
 
-  mostrarVer(info: Producto){
+  mostrarVer(info: Producto) {
     this.modalVisible = true;
-
     this.productoSeleccionado = info;
   }
+
+
+  agregarProducto(info: Producto) {
+    this.productoAgregado.emit(info)
+    this.compraVisible = true
+  }
+
+
+
 }
