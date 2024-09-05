@@ -14,9 +14,9 @@ export class ProductoComponent {
   //coleccion de productos añadidos a la lista
   productoCarrusel: Producto[] = []
 
-  productoAnanido(producto: Producto) {
+  productoAnadido(producto: Producto) {
     //modificador del valor "product"
-    this.product = '${producto.nombre}: ${producto.precio}'
+    this.product = `${producto.nombre} : $${producto.precio}`
 
     try {
       //agregamos la informacion por el parametro de la funcion a la coleccion de carrusel

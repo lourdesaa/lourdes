@@ -8,13 +8,13 @@ import { CrudService } from 'src/app/modules/admin/services/crud.service';
   styleUrls: ['./card-animacion.component.css']
 })
 export class CardAnimacionComponent {
-  // Colección de todos los productos
-  coleccionProductos: Producto[] = [];
-
+  // Definimos colección local de productos
   coleccionAnimacion: Producto[] = [];
 
+  // Variable local para obtener producto seleccionado
   productoSeleccionado!: Producto;
 
+  // Variable para manejar estado de un modal
   modalVisible: boolean = false;
 
   //Booleana para manejar la visibilidad de "ultima compra"
@@ -30,33 +30,23 @@ export class CardAnimacionComponent {
 
   ngOnInit(): void {
     this.servicioCrud.obtenerProducto().subscribe(producto => {
-      this.coleccionProductos = producto;
-
-      // mostrar la colección actual de animacion
-      this.mostrarProductoAnimacion();
+      this.coleccionAnimacion = producto;
     })
   }
 
-  mostrarProductoAnimacion() {
-    this.coleccionProductos.forEach(producto => {
-
-      if (producto.categoria === "animacion") {
-        this.coleccionAnimacion.push(producto);
-      }
-    })
-  }
-
+  // Función para modal que muestre la información de un producto en específico
   mostrarVer(info: Producto) {
+    // Habilita visibilidad del modal
     this.modalVisible = true;
+
+    // Guarda información de un producto elegido por el usuario
     this.productoSeleccionado = info;
   }
-
 
   agregarProducto(info: Producto) {
     this.productoAgregado.emit(info)
     this.compraVisible = true
   }
-
 
 
 }
