@@ -33,7 +33,5 @@ export class ProductoComponent {
         icon: 'error',
       })
     }
-
-
   }
 }
