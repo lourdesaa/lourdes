@@ -3,7 +3,9 @@ import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from '../services/auth.service';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore.service';
 import { Router } from '@angular/router';
+// import * as CryptoJS from 'crypto-js';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -37,6 +39,8 @@ export class InicioSesionComponent {
       password: this.usuarioIngresado.password
     }
 
+
+    
     const res = await this.servicioAuth.iniciarSesion(credenciales.email, credenciales.password)
       .then(res => {
         Swal.fire({
@@ -44,7 +48,18 @@ export class InicioSesionComponent {
           text: "Ha iniciado sesion con exito",
           icon: "success"
         });
-        this.servicioRutas.navigate(['/inicio']);
+
+        this.servicioAuth.enviarRolUsuario(usuarioData.rol)
+
+        if (usuarioData.rol === "admin") {
+          console.log("Inicio de sesion de usuario administrador")
+          this.servicioRutas.navigate(['/admin'])
+        } else {
+          console.log("Inicio de sesion de usuario visitante")
+          this.servicioRutas.navigate(['/inicio']);
+        }
+
+
       })
       .catch(err => {
         Swal.fire({

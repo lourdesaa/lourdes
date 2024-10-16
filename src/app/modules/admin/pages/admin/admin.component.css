@@ -1,6 +1,4 @@
-.container{
-    display: flex;
-    padding: 1rem;
+.modal-footer{
     text-align: center;
-    justify-content: space-around;
+    justify-content: center;
 }

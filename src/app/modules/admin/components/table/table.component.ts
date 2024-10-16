@@ -57,9 +57,9 @@ export class TableComponent {
 
       // Reemplaza 'url_del_producto' con la URL correcta
       await this.servicioCrud.subirImagen(this.nombreImagen, this.imagen, "productos")
-        .then(res => {
+        .then(resp => {
           // Encapsulamos respuesta y envíamos la información obtenida
-          this.servicioCrud.obtenerImagen(res)
+          this.servicioCrud.obtenerUrlImagen(resp)
             .then(url => {
               // Ahora método crearProducto recibe los datos del formulario y la URL formateada
               this.servicioCrud.crearProducto(nuevoProducto, url)
@@ -167,11 +167,15 @@ export class TableComponent {
       reader.readAsDataURL(archivo)
       //definimos que haremos con la informacion mediante funcion flecha
       reader.onloadend = () => {
+
         let url = reader.result
-        if (url != null)
-          this.nombreImagen = archivo.name
+
+        if (url != null){
+             this.nombreImagen = archivo.name
         //definimos ruta de la imagen segun URL recibida en formato cadena (string)
         this.imagen = url.toString()
+        }
+       
       }
     }
 

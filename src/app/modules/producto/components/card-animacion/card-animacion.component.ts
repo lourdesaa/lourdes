@@ -47,6 +47,4 @@ export class CardAnimacionComponent {
     this.productoAgregado.emit(info)
     this.compraVisible = true
   }
-
-
 }

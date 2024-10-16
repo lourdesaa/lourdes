@@ -17,8 +17,20 @@ import { getDownloadURL, getStorage, ref, UploadResult, uploadString, deleteObje
   providedIn: 'root'
 })
 export class CrudService {
-  subirImagen(nombreImagen: string, imagen: string, arg2: string) {
-    throw new Error('Method not implemented.');
+  async subirImagen(nombreImagen: string, imagen: string, ruta: string) {
+    try{
+      let referenciaImagen=ref(this.storage, ruta +'/' +nombreImagen)
+      this.respuesta=await uploadString(referenciaImagen,imagen,'data_url')
+      .then(resp=>{
+        return resp
+      })
+      return this.respuesta
+    }
+    catch(error)
+    {
+      console.log('error \n'+error)
+      return this.respuesta
+    }
   }
   //definimos coleccion para los productos de la web de los tipo Producto
   private productoCollection: AngularFirestoreCollection<Producto>
@@ -85,7 +97,7 @@ export class CrudService {
     })
   }
 
-  obtenerImagen(respuesta: UploadResult) {
+  obtenerUrlImagen(respuesta: UploadResult) {
     return getDownloadURL(respuesta.ref)
   }
 }
