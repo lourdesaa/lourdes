@@ -19,5 +19,25 @@ export const rutaProtegidaGuard: CanActivateFn = (route, state) => {
   //especificamos el rol esperado en el guardian
   const rolEsperado = "admin"
 
-  return true;
+  return from(servicioAuth.obtenerUid()).pipe(switchMap(uid => {
+    if (uid) {
+      return servicioAuth.obtenerRol(uid).pipe(
+        map(rol => {
+          if (rol === rolEsperado) {
+            console.log("usuario verificado como administrador");
+            return true
+          } else {
+            return false
+          }
+        })
+      )
+    } else {
+      //si no hay uid, el usuario no esta logueado
+      console.log("Usuario no valido. Permisos insuficientes")
+      //redirecciona al login si el usuario no es admin
+      return of(servicioRutas.createUrlTree(["inicio"]))
+    }
+  })
+  )
+
 };

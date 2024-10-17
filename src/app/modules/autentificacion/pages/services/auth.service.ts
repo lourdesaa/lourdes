@@ -47,23 +47,28 @@ export class AuthService {
     }
   }
 
+  obtenerUsuario(email: string) {
+    return this.servicioFirestore.collection('usuarios', ref => ref.where('email', '==', email)).get().toPromise()
+  }
+
+
   //FUNCION PARA RECUPERAR ROL DE USUARIO
   obtenerRol(uid: string): Observable<string | null> {
     /*
     retornamos del servicio de Firestore la coleccion de usuarios, buscando por UID
     observamos cambios en valores, mapeamos el documento de 'usuario'
     */
-    return this.servicioFirestore.collection('usuario').doc(uid).valueChanges()
-      .pipe(map((usuario: any)=> usuario ? usuario.rol : null))
+    return this.servicioFirestore.collection('usuarios').doc(uid).valueChanges()
+      .pipe(map((usuario: any) => usuario ? usuario.rol : null))
   }
 
   //obtiene el rol de la primera funcion y lo asigna a la propiedad privada local
-  enviarRolUsuario(rol:string){
-    this.rolUsuario=rol
+  enviarRolUsuario(rol: string) {
+    this.rolUsuario = rol
   }
 
   //obtiene el rol y lo retorna (ya sean alfanumericos o nulos)
-  obtenerRolUsuario():string|null{
+  obtenerRolUsuario(): string | null {
     return this.rolUsuario
   }
 
